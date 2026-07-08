@@ -40,7 +40,6 @@
             position: relative;
         }
 
-        /* --- BACKGROUND BLUR EFFECTS --- */
         .blur-bg {
             position: absolute;
             width: 500px;
@@ -222,12 +221,6 @@
             
             if (e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)) return false;
         };
-
-
-        const botPattern = /bot|crawler|spider|crawling|discordapp|embed/i;
-        if (botPattern.test(navigator.userAgent)) {
-            document.body.innerHTML = "<h1>sadox.ph website</h1>";
-        }
     </script>
 </body>
 </html>
