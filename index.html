@@ -7,9 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
     
     <meta property="og:title" content="SadoX Obfuscator">
-    <meta property="og:description" content="Protected by SadoX Security. Access denied for bots.">
-    <meta property="og:image" content="">
-    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:description" content="Protected by SadoX Security.">
     <meta name="robots" content="noindex, nofollow, noarchive">
 
     <style>
@@ -25,7 +23,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            user-select: none; 
+            user-select: none; /* Chống bôi đen copy */
             -webkit-user-select: none;
         }
 
@@ -37,16 +35,18 @@
             height: 100vh;
             display: flex;
             align-items: center;
+            justify-content: space-between;
             position: relative;
+            padding: 0 8%;
         }
 
         .blur-bg {
             position: absolute;
-            width: 500px;
-            height: 500px;
+            width: 600px;
+            height: 600px;
             background: var(--blur-color-1);
             border-radius: 50%;
-            filter: blur(120px);
+            filter: blur(150px);
             z-index: 1;
             animation: floatGlow 10s infinite alternate;
         }
@@ -57,7 +57,6 @@
             0% { transform: translate(0, 0) scale(1); }
             100% { transform: translate(50px, 30px) scale(1.1); }
         }
-
 
         .wave-container {
             position: absolute;
@@ -78,7 +77,6 @@
             background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,60 C150,100 350,20 500,60 C650,100 850,20 1000,60 C1150,100 1300,20 1450,60 L1450,120 L0,120 Z" fill="%23ff66b2"/></svg>') repeat-x;
             background-size: 50% 100%;
             bottom: 0;
-            transform: translate3d(0, 0, 0);
         }
 
         .wave1 { animation: waveMove 8s linear infinite; }
@@ -89,12 +87,10 @@
             100% { transform: translateX(-50%); }
         }
 
-
         .container {
             position: relative;
             z-index: 3;
-            margin-left: 8%;
-            max-width: 600px;
+            max-width: 550px;
             animation: fadeIn 1.2s ease-out;
         }
 
@@ -102,7 +98,6 @@
             from { opacity: 0; transform: translateX(-30px); filter: blur(10px); }
             to { opacity: 1; transform: translateX(0); filter: blur(0); }
         }
-
 
         .title {
             font-family: 'Space Grotesk', sans-serif;
@@ -114,7 +109,6 @@
             -webkit-text-fill-color: transparent;
             margin-bottom: 2px;
         }
-
 
         .subtitle {
             font-size: 1.1rem;
@@ -132,7 +126,6 @@
             66% { color: #ff99ff; text-shadow: 0 0 8px rgba(255,153,255,0.6); }
             100% { color: #ff66b2; text-shadow: 0 0 8px rgba(255,102,178,0.6); }
         }
-
 
         .description {
             font-size: 1rem;
@@ -173,15 +166,61 @@
             transition: 0.5s;
         }
 
-        .btn-get-started:hover::before {
-            left: 100%;
-        }
+        .btn-get-started:hover::before { left: 100%; }
 
         .btn-get-started:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(255, 102, 178, 0.5);
             border-color: rgba(255, 255, 255, 0.3);
         }
+
+        .right-area {
+            position: relative;
+            z-index: 3;
+            width: 300px;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px; /* Tạo độ sâu 3D */
+            animation: floatCube 4s ease-in-out infinite alternate;
+            margin-right: 4%;
+        }
+
+        @keyframes floatCube {
+            0% { transform: translateY(-10px); }
+            100% { transform: translateY(15px); }
+        }
+
+        .cube {
+            width: 150px;
+            height: 150px;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotateCube 12s linear infinite;
+        }
+
+        @keyframes rotateCube {
+            0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+            100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
+        }
+
+        .cube-face {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: rgba(11, 7, 14, 0.6);
+            border: 2px solid var(--primary-pink);
+            box-shadow: 0 0 20px rgba(255, 102, 178, 0.4), inset 0 0 15px rgba(255, 102, 178, 0.2);
+        }
+
+        .front  { transform: translateZ(75px); }
+        .back   { transform: rotateY(180deg) translateZ(75px); }
+        .left   { transform: rotateY(-90deg) translateZ(75px); }
+        .right  { transform: rotateY(90deg) translateZ(75px); }
+        .top    { transform: rotateX(90deg) translateZ(75px); }
+        .bottom { transform: rotateX(-90deg) translateZ(75px); }
+
     </style>
 </head>
 <body>
@@ -199,26 +238,31 @@
         <div class="subtitle">sadox.ph</div>
         <p class="description">
             Obfuscator Lua <span>Roblox</span> Next Gen 
-            SadoX is a Lua obfuscator that allows you to secure your Lua scripts
+            SadoX is a Lua obfuscator that allows you to secure your Lua scripts.
         </p>
         <a href="https://discord.gg/hWEqCaH9BH" target="_blank" class="btn-get-started">Get Started</a>
     </div>
 
+    <div class="right-area">
+        <div class="cube">
+            <div class="cube-face front"></div>
+            <div class="cube-face back"></div>
+            <div class="cube-face left"></div>
+            <div class="cube-face right"></div>
+            <div class="cube-face top"></div>
+            <div class="cube-face bottom"></div>
+        </div>
+    </div>
+
     <script>
- 
         document.addEventListener('contextmenu', e => e.preventDefault());
 
         document.onkeydown = function(e) {
-            if (e.keyCode == 123) return false;
-            
+            if (e.keyCode == 123) return false; // F12
             if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
-            
             if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
-            
             if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false;
-            
             if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
-            
             if (e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)) return false;
         };
     </script>
