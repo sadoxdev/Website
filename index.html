@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SadoX Obfuscator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <meta property="og:title" content="SadoX Obfuscator">
+    <meta property="og:description" content="Protected by SadoX Security. Access denied for bots.">
+    <meta property="og:image" content="">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="robots" content="noindex, nofollow, noarchive">
+
+    <style>
+        :root {
+            --bg-color: #0b070e;
+            --primary-pink: #ff66b2;
+            --dark-pink: #da3f87;
+            --blur-color-1: rgba(255, 102, 178, 0.15);
+            --blur-color-2: rgba(128, 0, 128, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none; 
+            -webkit-user-select: none;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        /* --- BACKGROUND BLUR EFFECTS --- */
+        .blur-bg {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: var(--blur-color-1);
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: 1;
+            animation: floatGlow 10s infinite alternate;
+        }
+        .blur-1 { top: -10%; left: -10%; }
+        .blur-2 { bottom: -10%; right: -10%; background: var(--blur-color-2); }
+
+        @keyframes floatGlow {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, 30px) scale(1.1); }
+        }
+
+
+        .wave-container {
+            position: absolute;
+            left: 5%;
+            top: 30%;
+            width: 650px;
+            height: 250px;
+            z-index: 2;
+            overflow: hidden;
+            opacity: 0.25;
+            pointer-events: none;
+        }
+
+        .wave {
+            position: absolute;
+            width: 200%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,60 C150,100 350,20 500,60 C650,100 850,20 1000,60 C1150,100 1300,20 1450,60 L1450,120 L0,120 Z" fill="%23ff66b2"/></svg>') repeat-x;
+            background-size: 50% 100%;
+            bottom: 0;
+            transform: translate3d(0, 0, 0);
+        }
+
+        .wave1 { animation: waveMove 8s linear infinite; }
+        .wave2 { animation: waveMove 4s linear infinite reverse; opacity: 0.5; bottom: 5px; }
+
+        @keyframes waveMove {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+
+        .container {
+            position: relative;
+            z-index: 3;
+            margin-left: 8%;
+            max-width: 600px;
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateX(-30px); filter: blur(10px); }
+            to { opacity: 1; transform: translateX(0); filter: blur(0); }
+        }
+
+
+        .title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 4rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            background: linear-gradient(45deg, #ffffff, #ffb3d9, var(--primary-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 2px;
+        }
+
+
+        .subtitle {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            display: inline-block;
+            animation: rgbText 4s linear infinite;
+        }
+
+        @keyframes rgbText {
+            0% { color: #ff66b2; text-shadow: 0 0 8px rgba(255,102,178,0.6); }
+            33% { color: #da3f87; text-shadow: 0 0 8px rgba(218,63,135,0.6); }
+            66% { color: #ff99ff; text-shadow: 0 0 8px rgba(255,153,255,0.6); }
+            100% { color: #ff66b2; text-shadow: 0 0 8px rgba(255,102,178,0.6); }
+        }
+
+
+        .description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #b3a1b6;
+            margin-bottom: 35px;
+        }
+        
+        .description span {
+            color: var(--primary-pink);
+            font-weight: 600;
+        }
+
+        .btn-get-started {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 35px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #ffffff;
+            text-decoration: none;
+            background: linear-gradient(90deg, var(--dark-pink), var(--primary-pink));
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 5px 20px rgba(255, 102, 178, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-get-started::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-get-started:hover::before {
+            left: 100%;
+        }
+
+        .btn-get-started:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 102, 178, 0.5);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="blur-bg blur-1"></div>
+    <div class="blur-bg blur-2"></div>
+
+    <div class="wave-container">
+        <div class="wave wave1"></div>
+        <div class="wave wave2"></div>
+    </div>
+
+    <div class="container">
+        <h1 class="title">SadoX Obfuscator</h1>
+        <div class="subtitle">sadox.ph</div>
+        <p class="description">
+            Obfuscator Lua <span>Roblox</span> Next Gen 
+            SadoX is a Lua obfuscator that allows you to secure your Lua scripts
+        </p>
+        <a href="https://discord.gg/hWEqCaH9BH" target="_blank" class="btn-get-started">Get Started</a>
+    </div>
+
+    <script>
+ 
+        document.addEventListener('contextmenu', e => e.preventDefault());
+
+        document.onkeydown = function(e) {
+            if (e.keyCode == 123) return false;
+            
+            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+            
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
+            
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false;
+            
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
+            
+            if (e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)) return false;
+        };
+
+
+        const botPattern = /bot|crawler|spider|crawling|discordapp|embed/i;
+        if (botPattern.test(navigator.userAgent)) {
+            document.body.innerHTML = "<h1>sadox.ph website</h1>";
+        }
+    </script>
+</body>
+</html>
